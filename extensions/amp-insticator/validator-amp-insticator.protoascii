@@ -29,7 +29,7 @@ tags: {  # <amp-insticator>
   tag_name: "AMP-INSTICATOR"
   requires_extension: "amp-insticator"
   attr_lists: "extended-amp-global"
-  spec_url: "https://amp.dev/documentation/components/amp-insticator"
+  spec_url: "https://www.ampproject.org/docs/reference/components/amp-insticator"
   amp_layout: {
     supported_layouts: RESPONSIVE
   }

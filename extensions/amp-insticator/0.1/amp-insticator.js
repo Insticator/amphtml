@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS-IS" BASIS,
@@ -14,35 +14,107 @@
  * limitations under the License.
  */
 
-import {Layout} from '../../../src/layout';
 
+
+/* ++++++++++ --------------- IMPORTS --------------- ++++++++++ */
+import { Layout } from '../../../src/layout';
+import { setStyles } from '../../../src/style';
+
+
+
+/* ++++++++++ --------------- EXPORT AMP-INSTICATOR --------------- ++++++++++ */
 export class AmpInsticator extends AMP.BaseElement {
 
-  /** @param {!AmpElement} element */
+
+  // ..... CONSTRUCTOR ..... //
   constructor(element) {
     super(element);
-
-    /** @private {string} */
-    this.myText_ = 'hello world';
-
-    /** @private {?Element} */
-    this.container_ = null;
+    this.iFrameElement = null; // amp requirement
   }
 
-  /** @override */
+
+  // ~~~~~ AMP METHODs ~~~~~ //
   buildCallback() {
-    this.container_ = this.element.ownerDocument.createElement('div');
-    this.container_.textContent = this.myText_;
-    this.element.appendChild(this.container_);
-    this.applyFillContent(this.container_, /* replacedContent */ true);
+    // get data attribute from the amp-insticator tag
+    const embedId = this.element.getAttribute('embed-id');
+
+    // create markup structure
+    const template = this.createTemplate(this.createInitialMarkup());
+
+    // append markup structure to DOM
+    this.appendElement(this.element, template);
+    
+    // store DOM elements
+    const insticatorContainer = this.element.querySelector('#insticator-container'); 
+    const embedIframe = this.iFrameElement = this.element.querySelector('#insticator-iframe');
+    const embedApp = this.createElement(this.element.ownerDocument, 'div', { id: 'app' });
+    const embedScript = this.createElement(this.element.ownerDocument, 'script', { type: 'text/javascript', src: `https://d3lcz8vpax4lo2.cloudfront.net/embed-code/${embedId}.js` });
+    
+    // append iframe
+    this.appendElement(this.element.querySelector('#insticator-embed'), embedIframe);
+
+    // append content to iframe
+    this.appendElement(embedIframe.contentWindow.document.body, embedApp);
+    this.appendElement(embedIframe.contentWindow.document.head, embedScript);
+
+    // append ads
+    this.getRequest(`https://s3.amazonaws.com/embedlocalhost/test/ad_settings/${embedId}.js`, (ads) => this.appendAds(ads));
+
+    // apply custom styles
+    setStyles(embedIframe, { 'height': '350px' }); // this needs to be dynamic, recalculated from the child iframe (where we have height specified via settings files)
+    setStyles(insticatorContainer, { 'text-align': 'center' });
+
+    // render complete elements
+    this.renderContent(embedIframe); // amp requirement
+  }
+  isLayoutSupported(layout) {
+    return layout == Layout.CONTAINER;
   }
 
-  /** @override */
-  isLayoutSupported(layout) {
-    return layout == Layout.RESPONSIVE;
+
+  // ----- CUSTOM FUNCTIONs ----- //
+  getRequest(file, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => xhr.readyState == 4 && xhr.status == 200 ? callback(JSON.parse(xhr.responseText)) : null;
+    xhr.open('GET', file, true);
+    xhr.send();
+  }
+  createTemplate(domString) {
+    const template = document.createElement('template');
+    template.innerHTML = domString;
+    return template.content;
+  }
+  createElement(location, el, attrs) {
+    const newEl = location.createElement(el);
+    Object.entries(attrs).forEach(attr => newEl.setAttribute(attr[0], attr[1]));
+    return newEl;
+  }
+  appendElement(location, el) {
+    location.appendChild(el);
+  }
+  appendAds(ads) {
+    Object.entries(ads).forEach(ad => this.appendElement(this.element.querySelector(`#div-insticator-ad-${ad[0][ad[0].length -1]}`), this.createElement(this.element.ownerDocument, 'amp-ad', ad[1])));
+  }
+  createInitialMarkup() {
+    // replicates our standard setup
+    return `
+      <div id="insticator-container">
+        <div id="div-insticator-ad-1"></div>
+        <div id="insticator-embed">
+          <iframe id="insticator-iframe" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+        </div>
+        <div id="div-insticator-ad-2"></div>
+      </div>
+    `;
+  }
+  renderContent(el) {
+    this.applyFillContent(el, true); /* replacedContent */
   }
 }
 
+
+
+/* ++++++++++ --------------- EXTEND AMP --------------- ++++++++++ */
 AMP.extension('amp-insticator', '0.1', AMP => {
   AMP.registerElement('amp-insticator', AmpInsticator);
 });
