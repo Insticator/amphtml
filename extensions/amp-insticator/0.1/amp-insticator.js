@@ -30,25 +30,35 @@ export class AmpInsticator extends AMP.BaseElement {
   constructor(element) {
     super(element);
     this.iFrameElement = null; // amp requirement
+    this.url = {
+      ads: 'https://drhn9v8cwg89y.cloudfront.net',
+      embed: 'https://d3lcz8vpax4lo2.cloudfront.net'
+    }
   }
 
 
   // ~~~~~ AMP METHODs ~~~~~ //
+  preconnectCallback() {
+    // define preconnect first
+    const {preconnect} = this;
+    // app code and ads settings served from here
+    preconnect.url(this.urls.local);
+  }
   buildCallback() {
-    // get data attribute from the amp-insticator tag
-    const embedId = this.element.getAttribute('embed-id');
-
     // create markup structure
     const template = this.createTemplate(this.createInitialMarkup());
 
     // append markup structure to DOM
     this.appendElement(this.element, template);
-    
+  }
+  layoutCallback() {
+    // get data attribute from the amp-insticator tag
+    const embedId = this.element.getAttribute('embed-id');
     // store DOM elements
     const insticatorContainer = this.element.querySelector('#insticator-container'); 
     const embedIframe = this.iFrameElement = this.element.querySelector('#insticator-iframe');
     const embedApp = this.createElement(this.element.ownerDocument, 'div', { id: 'app' });
-    const embedScript = this.createElement(this.element.ownerDocument, 'script', { type: 'text/javascript', src: `https://d3lcz8vpax4lo2.cloudfront.net/embed-code/${embedId}.js` });
+    const embedScript = this.createElement(this.element.ownerDocument, 'script', { type: 'text/javascript', src: `${this.url.embed}/embed-code/${embedId}.js` });
     
     // append iframe
     this.appendElement(this.element.querySelector('#insticator-embed'), embedIframe);
@@ -58,14 +68,11 @@ export class AmpInsticator extends AMP.BaseElement {
     this.appendElement(embedIframe.contentWindow.document.head, embedScript);
 
     // append ads
-    this.getRequest(`https://s3.amazonaws.com/embedlocalhost/test/ad_settings/${embedId}.js`, (ads) => this.appendAds(ads));
+    this.getRequest(`${this.url.ads}/test/ad_settings/${embedId}.js`, (ads) => this.appendAds(ads));
 
     // apply custom styles
     setStyles(embedIframe, { 'height': '350px' }); // this needs to be dynamic, recalculated from the child iframe (where we have height specified via settings files)
     setStyles(insticatorContainer, { 'text-align': 'center' });
-
-    // render complete elements
-    this.renderContent(embedIframe); // amp requirement
   }
   isLayoutSupported(layout) {
     return layout == Layout.CONTAINER;
