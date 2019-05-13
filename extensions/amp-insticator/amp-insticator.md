@@ -13,14 +13,12 @@
   3. And remove this comment! (no empty lines before "---")
 -->
 ---
-$category: presentation
+$category@: media
 formats:
   - websites
-  - email
 teaser:
-  text: FILL THIS IN.
----
-<!--
+  text: Displays an Insticator content unit
+---<!--
 Copyright 2019 The AMP HTML Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,16 +61,16 @@ limitations under the License.
 
 ## Behavior
 
-FILL THIS IN. What does this extension do?
+This extension will embed the Insticator content unit into your site. The unit will provide quiz questions, poll questions, and other engaging content to your audience while monetizing via advertisements.
 
 ## Attributes
 
-FILL THIS IN. Does this extension allow for properties to configure?
+There is only one necessary attribute for extension. 
 
 <table>
   <tr>
-    <td width="40%"><strong>data-my-attribute</strong></td>
-    <td>FILL THIS IN. This table <strong>must</strong> be written in HTML.</td>
+    <td width="40%"><strong>data-embed-id</strong></td>
+    <td>This is the ID of your unit. It's how we'll generate the matching unit in your site.</td>
   </tr>
 </table>
 
