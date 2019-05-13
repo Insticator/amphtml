@@ -39,15 +39,16 @@ export class AmpInsticator extends AMP.BaseElement {
 
   // ~~~~~ AMP METHODs ~~~~~ //
   preconnectCallback() {
-    // define preconnect first
+    // define preconnect
     const {preconnect} = this;
-    // app code and ads settings served from here
-    preconnect.url(this.urls.local);
+    // host where we store advertising settings code
+    preconnect.url(this.url.ads);
+    // host we serve the core embed application from
+    preconnect.url(this.url.embed);
   }
   buildCallback() {
     // create markup structure
     const template = this.createTemplate(this.createInitialMarkup());
-
     // append markup structure to DOM
     this.appendElement(this.element, template);
   }
@@ -113,9 +114,6 @@ export class AmpInsticator extends AMP.BaseElement {
         <div id="div-insticator-ad-2"></div>
       </div>
     `;
-  }
-  renderContent(el) {
-    this.applyFillContent(el, true); /* replacedContent */
   }
 }
 
