@@ -505,6 +505,10 @@ export const adConfig = {
 
   'ibillboard': {},
 
+  'idealmedia': {
+    renderStartImplemented: false,
+  },
+
   'imedia': {
     prefetch: 'https://i.imedia.cz/js/im3.js',
     renderStartImplemented: true,
@@ -561,6 +565,10 @@ export const adConfig = {
   },
 
   'kuadio': {},
+
+  'lentainform': {
+    renderStartImplemented: false,
+  },
 
   'ligatus': {
     prefetch: 'https://ssl.ligatus.com/render/ligrend.js',
@@ -633,6 +641,10 @@ export const adConfig = {
 
   'meg': {
     renderStartImplemented: true,
+  },
+
+  'mgid': {
+    renderStartImplemented: false,
   },
 
   'microad': {
@@ -786,7 +798,6 @@ export const adConfig = {
   'pubmine': {
     prefetch: [
       'https://s.pubmine.com/head.js',
-      'https://s.pubmine.com/showad.js',
     ],
     preconnect: 'https://delivery.g.switchadhub.com',
     renderStartImplemented: true,
