@@ -72,7 +72,6 @@ export class AmpInsticator extends AMP.BaseElement {
     this.getRequest(`${this.url.ads}/test/ad_settings/${embedId}.js`, (ads) => this.appendAds(ads));
 
     // apply custom styles
-    setStyles(embedIframe, { 'height': '350px' }); // this needs to be dynamic, recalculated from the child iframe (where we have height specified via settings files)
     setStyles(insticatorContainer, { 'text-align': 'center' });
   }
   isLayoutSupported(layout) {
@@ -104,7 +103,6 @@ export class AmpInsticator extends AMP.BaseElement {
     Object.entries(ads).forEach(ad => this.appendElement(this.element.querySelector(`#div-insticator-ad-${ad[0][ad[0].length -1]}`), this.createElement(this.element.ownerDocument, 'amp-ad', ad[1])));
   }
   createInitialMarkup() {
-    // replicates our standard setup
     return `
       <div id="insticator-container">
         <div id="div-insticator-ad-1"></div>
