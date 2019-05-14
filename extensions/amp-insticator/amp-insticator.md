@@ -46,7 +46,7 @@ Displays an <a href="https://www.insticator.com">Insticator</a> embed.
 
 Implement the below element into your website code in the location you wish to see it visually appear on your website. 
 
-Example:cote
+Example:
 ```html
 <amp-insticator
     data-embed-id="06538eab-6e13-4e71-8584-8501a8e85f7b">
