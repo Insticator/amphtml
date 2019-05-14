@@ -96,7 +96,6 @@ export class AmpInsticator extends AMP.BaseElement {
     if (this.iFrameElement) {
       removeElement(this.iFrameElement);
       this.iFrameElement= null;
-      this.iframePromise_ = null;
     }
     return true; // Call layoutCallback again.
   }
