@@ -1,24 +1,11 @@
-<!--
-  1. Change "category" below to one of:
-       ads-analytics
-       dynamic-content
-       layout
-       media
-       presentation
-       social
-
-  2. Remove any of the "formats" that don't apply.
-     You can also add the "ads" and "stories" formats if they apply.
-
-  3. And remove this comment! (no empty lines before "---")
--->
 ---
-$category@: media
+$category@: dynamic-content
 formats:
   - websites
 teaser:
-  text: Displays an Insticator content unit
----<!--
+  text: Displays an Insticator content unit.
+---
+<!--
 Copyright 2019 The AMP HTML Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
