@@ -65,7 +65,7 @@ export class AmpInsticator extends AMP.BaseElement {
   /** @override */
   layoutCallback() {
     // get data attribute from the amp-insticator tag
-    const embedId = this.element.getAttribute('embed-id');
+    const embedId = this.element.getAttribute('data-embed-id');
     // store DOM elements
     const insticatorContainer = this.element.querySelector('#insticator-container');
     const embedIframe = this.iFrameElement = this.element.querySelector('#insticator-iframe');
