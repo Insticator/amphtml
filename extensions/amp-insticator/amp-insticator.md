@@ -3,9 +3,9 @@ $category@: dynamic-content
 formats:
   - websites
 teaser:
-  text: Displays an Insticator content unit.
+  text: Displays an Insticator embed.
 ---
-<!--
+<!---
 Copyright 2019 The AMP HTML Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,45 +21,55 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# `amp-insticator`
+# amp-insticator
+
+Displays an <a href="https://www.insticator.com">Insticator</a> embed.
 
 <table>
   <tr>
-    <td width="40%"><strong>Description</strong></td>
-    <td>FILL THIS IN</td>
-  </tr>
-  <tr>
-    <td width="40%"><strong>Availability</strong></td>
-    <td>FILL THIS IN</td>
-  </tr>
-  <tr>
     <td width="40%"><strong>Required Script</strong></td>
-    <td><code>&lt;script async custom-element="amp-insticator" src="https://cdn.ampproject.org/v0/amp-insticator-0.1.js">&lt;/script></code></td>
+    <td><code>&lt;script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js">&lt;/script></code></td>
   </tr>
   <tr>
     <td class="col-fourty"><strong><a href="https://www.ampproject.org/docs/guides/responsive/control_layout.html">Supported Layouts</a></strong></td>
-    <td>FILL THIS IN</td>
+    <td>fill, fixed, fixed-height, flex-item, nodisplay, responsive</td>
   </tr>
   <tr>
     <td width="40%"><strong>Examples</strong></td>
-    <td>FILL THIS IN</td>
+    <td><a href="https://ampbyexample.com/components/amp-insticator/">Annotated code example for amp-insticator</a></td>
   </tr>
 </table>
 
+[TOC]
+
 ## Behavior
 
-This extension will embed the Insticator content unit into your site. The unit will provide quiz questions, poll questions, and other engaging content to your audience while monetizing via advertisements.
+Implement the below element into your website code in the location in which you wish to see it visually appear on your website. 
+
+Example:cote
+```html
+<amp-insticator
+    data-embed-id="06538eab-6e13-4e71-8584-8501a8e85f7b">
+</amp-insticator>
+```
+
+This element will generate an <a href="https://www.insticator.com">Insticator</a> embed, a white-labeled content engagement unit. The unit will pose contextually relevant quiz and poll questions to your audience while monetizing via accompanying advertisements.
 
 ## Attributes
-
-There is only one necessary attribute for extension. 
 
 <table>
   <tr>
     <td width="40%"><strong>data-embed-id</strong></td>
-    <td>This is the ID of your unit. It's how we'll generate the matching unit in your site.</td>
+    <td>Unique identifier of your custom embed.</td>
+  </tr>
+  <tr>
+    <td width="40%"><strong>common attributes</strong></td>
+    <td>This element includes <a href="https://www.ampproject.org/docs/reference/common_attributes">common attributes</a> extended to AMP components.</td>
   </tr>
 </table>
 
+
 ## Validation
-See [amp-insticator rules](https://github.com/ampproject/amphtml/blob/master/extensions/amp-insticator/validator-amp-insticator.protoascii) in the AMP validator specification.
+
+See [amp-instagram rules](https://github.com/ampproject/amphtml/blob/master/extensions/amp-instagram/validator-amp-instagram.protoascii) in the AMP validator specification.
+<code>&lt;script async custom-element="amp-insticator" src="https://cdn.ampproject.org/v0/amp-insticator-0.1.js">&lt;/script></code>
