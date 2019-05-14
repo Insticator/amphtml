@@ -28,7 +28,7 @@ Displays an <a href="https://www.insticator.com">Insticator</a> embed.
 <table>
   <tr>
     <td width="40%"><strong>Required Script</strong></td>
-    <td><code>&lt;script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js">&lt;/script></code></td>
+    <td><code>&lt;script async custom-element="amp-insticator" src="https://cdn.ampproject.org/v0/amp-insticator-0.1.js">&lt;/script></code></td>
   </tr>
   <tr>
     <td class="col-fourty"><strong><a href="https://www.ampproject.org/docs/guides/responsive/control_layout.html">Supported Layouts</a></strong></td>
@@ -44,7 +44,7 @@ Displays an <a href="https://www.insticator.com">Insticator</a> embed.
 
 ## Behavior
 
-Implement the below element into your website code in the location in which you wish to see it visually appear on your website. 
+Implement the below element into your website code in the location you wish to see it visually appear on your website. 
 
 Example:cote
 ```html
@@ -70,6 +70,4 @@ This element will generate an <a href="https://www.insticator.com">Insticator</a
 
 
 ## Validation
-
-See [amp-instagram rules](https://github.com/ampproject/amphtml/blob/master/extensions/amp-instagram/validator-amp-instagram.protoascii) in the AMP validator specification.
-<code>&lt;script async custom-element="amp-insticator" src="https://cdn.ampproject.org/v0/amp-insticator-0.1.js">&lt;/script></code>
+See [amp-insticator rules](https://github.com/ampproject/amphtml/blob/master/extensions/amp-insticator/validator-amp-insticator.protoascii) in the AMP validator specification.
