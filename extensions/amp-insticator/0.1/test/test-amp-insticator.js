@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import '../amp-insticator';
+import {AmpInsticator} from '../amp-insticator';
 
 describes.realWin('amp-insticator', {
   amp: {
@@ -23,16 +23,55 @@ describes.realWin('amp-insticator', {
 }, env => {
 
   let win;
-  let element;
+  let doc;
+  let ampInsticator;
+  let layoutCallbackSpy;
+  let getRequestSpy;
 
-  beforeEach(() => {
+  function getAmpInsticatior() {
+    const ampInsticator = doc.createElement('amp-insticator');
+    ampInsticator.setAttribute('data-embed-id', '5bf0548f-a332-4934-9d35-c9ca9e93d4ff')
+    doc.body.appendChild(ampInsticator);
+
+    //Seting up spys
+    getRequestSpy = env.sandbox.spy(ampInsticator.implementation_, 'getRequest');
+
+    return ampInsticator.build()
+    .then( () => ampInsticator.layoutCallback() )
+    .then( () => ampInsticator );
+  }
+
+  beforeEach(async function() {
     win = env.win;
-    element = win.document.createElement('amp-insticator');
-    win.document.body.appendChild(element);
+    doc = win.document;
+    ampInsticator = await getAmpInsticatior();
+    });
+
+  it('renders', function() {
+    expect(ampInsticator).to.not.be.undefined;
+    expect(ampInsticator).to.not.be.null;
+    const iframe = ampInsticator.querySelector('iframe');
+    console.log(iframe.contentWindow.document.head ? 'there is a head' : 'there is nothing in the iframe');
+    expect(iframe).to.not.be.undefined;
+    expect(iframe).to.not.be.null;
   });
 
-  it('should have hello world when built', () => {
-    element.build();
-    expect(element.querySelector('div').textContent).to.equal('hello world');
+  it('makes a request for ads data was made correctly', function() {
+    //we'll read the url property from the real instance
+    const obj = ampInsticator.implementation_;
+    expect(getRequestSpy).to.be.calledOnce;
+    const argumentsPassedToGetRequest = getRequestSpy.args[0];
+    const requestedUrl = argumentsPassedToGetRequest[0];
+    expect(requestedUrl).to.include(obj.url.ads);
+    expect(argumentsPassedToGetRequest[1]).to.be.a('function');
+  });
+
+  it('removes iframe on unlayoutCallback()', function() {
+    const iframe = ampInsticator.querySelector('iframe');
+    expect(iframe).to.not.be.undefined;
+    expect(iframe).to.not.be.null;
+    const obj = ampInsticator.implementation_;
+    obj.unlayoutCallback();
+    expect(ampInsticator.querySelector('iframe')).to.be.null;
   });
 });
