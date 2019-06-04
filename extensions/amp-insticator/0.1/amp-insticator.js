@@ -19,8 +19,7 @@
 /* ++++++++++ --------------- IMPORTS --------------- ++++++++++ */
 import { Layout } from '../../../src/layout';
 import { setStyles } from '../../../src/style';
-
-
+import {removeElement} from '../../../src/dom';
 
 /* ++++++++++ --------------- EXPORT AMP-INSTICATOR --------------- ++++++++++ */
 export class AmpInsticator extends AMP.BaseElement {
