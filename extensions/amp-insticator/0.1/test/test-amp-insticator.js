@@ -25,6 +25,7 @@ describes.realWin('amp-insticator', {
   let win;
   let doc;
   let ampInsticator;
+  let obj;
   let layoutCallbackSpy;
   let getRequestSpy;
 
@@ -33,7 +34,7 @@ describes.realWin('amp-insticator', {
     ampInsticator.setAttribute('data-embed-id', '5bf0548f-a332-4934-9d35-c9ca9e93d4ff')
     doc.body.appendChild(ampInsticator);
 
-    //Seting up spys
+    //Seting up spys and fakes
     getRequestSpy = env.sandbox.spy(ampInsticator.implementation_, 'getRequest');
 
     return ampInsticator.build()
@@ -45,32 +46,41 @@ describes.realWin('amp-insticator', {
     win = env.win;
     doc = win.document;
     ampInsticator = await getAmpInsticatior();
+    obj = ampInsticator.implementation_;
     });
 
-  it('renders', function() {
-    expect(ampInsticator).to.not.be.undefined;
-    expect(ampInsticator).to.not.be.null;
-    const iframe = ampInsticator.querySelector('iframe');
-    console.log(iframe.contentWindow.document.head ? 'there is a head' : 'there is nothing in the iframe');
-    expect(iframe).to.not.be.undefined;
-    expect(iframe).to.not.be.null;
+  describe('renders', function renders(){
+    it('renders an iframe', function() {
+      expect(ampInsticator).to.not.be.undefined;
+      expect(ampInsticator).to.not.be.null;
+      const iframe = ampInsticator.querySelector('iframe');
+      expect(iframe).to.not.be.undefined;
+      expect(iframe).to.not.be.null;
+    });
+    it("appends Insticator's script to iframe", function(){
+      const iframe = ampInsticator.querySelector('iframe');
+      const scriptTagInIframe = iframe.contentWindow.document.querySelector('script');
+      expect(scriptTagInIframe).to.not.be.undefined;
+      expect(scriptTagInIframe).to.not.be.null;
+      expect(scriptTagInIframe.src).to.include(obj.url.embed);
+    });
+    it("appends div#app to iframe", function(){
+      const iframe = ampInsticator.querySelector('iframe');
+      const divApp = iframe.contentWindow.document.getElementById('app');
+      expect(divApp).to.not.be.undefined;
+      expect(divApp).to.not.be.null;
+    });
   });
 
-  it('makes a request for ads data was made correctly', function() {
-    //we'll read the url property from the real instance
-    const obj = ampInsticator.implementation_;
+  it('makes a request for ads data correctly', function() {
     expect(getRequestSpy).to.be.calledOnce;
-    const argumentsPassedToGetRequest = getRequestSpy.args[0];
-    const requestedUrl = argumentsPassedToGetRequest[0];
-    expect(requestedUrl).to.include(obj.url.ads);
-    expect(argumentsPassedToGetRequest[1]).to.be.a('function');
+    expect(getRequestSpy.calledWith(sinon.match(obj.url.ads), sinon.match.func)).to.be.true;
   });
 
   it('removes iframe on unlayoutCallback()', function() {
     const iframe = ampInsticator.querySelector('iframe');
     expect(iframe).to.not.be.undefined;
     expect(iframe).to.not.be.null;
-    const obj = ampInsticator.implementation_;
     obj.unlayoutCallback();
     expect(ampInsticator.querySelector('iframe')).to.be.null;
   });
