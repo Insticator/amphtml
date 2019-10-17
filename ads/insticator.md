@@ -21,6 +21,8 @@ limitations under the License.
 
 ```html
 <amp-embed 
+	width="auto"
+	height="850"
     type="insticator"
     data-site-id="SITE-ID"
     data-embed-id="EMBED-ID">
@@ -33,5 +35,5 @@ For details on the configuration semantics, please contact [Insticator](https://
 
 ### Required parameters
 
-- `data-site-id`: ID for the site where your Insticator Embed lives
-- `data-embed-id`: Uniquie ID of your Insticator Embed
+- `data-site-id`: ID of the site your Insticator Embed lives in
+- `data-embed-id`: ID of your Insticator Embed
