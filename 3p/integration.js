@@ -71,6 +71,7 @@ import {adbutler} from '../ads/adbutler';
 import {adform} from '../ads/adform';
 import {adfox} from '../ads/adfox';
 import {adgeneration} from '../ads/adgeneration';
+import {adglare} from '../ads/adglare';
 import {adhese} from '../ads/adhese';
 import {adincube} from '../ads/adincube';
 import {adition} from '../ads/adition';
@@ -89,6 +90,7 @@ import {adsnative} from '../ads/adsnative';
 import {adspeed} from '../ads/adspeed';
 import {adspirit} from '../ads/adspirit';
 import {adstir} from '../ads/adstir';
+import {adstyle} from '../ads/adstyle';
 import {adtech} from '../ads/adtech';
 import {adthrive} from '../ads/adthrive';
 import {adunity} from '../ads/adunity';
@@ -118,6 +120,7 @@ import {caprofitx} from '../ads/caprofitx';
 import {cedato} from '../ads/cedato';
 import {chargeads, nws} from '../ads/nws';
 import {colombia} from '../ads/colombia';
+import {conative} from '../ads/conative';
 import {connatix} from '../ads/connatix';
 import {contentad} from '../ads/contentad';
 import {criteo} from '../ads/criteo';
@@ -129,6 +132,7 @@ import {dotandads} from '../ads/dotandads';
 import {dynad} from '../ads/dynad';
 import {eadv} from '../ads/eadv';
 import {eas} from '../ads/eas';
+import {empower} from '../ads/empower';
 import {engageya} from '../ads/engageya';
 import {epeex} from '../ads/epeex';
 import {eplanning} from '../ads/eplanning';
@@ -207,10 +211,12 @@ import {pubexchange} from '../ads/pubexchange';
 import {pubguru} from '../ads/pubguru';
 import {pubmatic} from '../ads/pubmatic';
 import {pubmine} from '../ads/pubmine';
+import {puffnetwork} from '../ads/puffnetwork';
 import {pulsepoint} from '../ads/pulsepoint';
 import {purch} from '../ads/purch';
 import {quoraad} from '../ads/quoraad';
 import {rbinfox} from '../ads/rbinfox';
+import {readmo} from '../ads/readmo';
 import {realclick} from '../ads/realclick';
 import {recomad} from '../ads/recomad';
 import {relap} from '../ads/relap';
@@ -221,13 +227,16 @@ import {rnetplus} from '../ads/rnetplus';
 import {rubicon} from '../ads/rubicon';
 import {runative} from '../ads/runative';
 import {sas} from '../ads/sas';
+import {seedingalliance} from '../ads/seedingalliance';
 import {sekindo} from '../ads/sekindo';
 import {sharethrough} from '../ads/sharethrough';
+import {shemedia} from '../ads/shemedia';
 import {sklik} from '../ads/sklik';
 import {slimcutmedia} from '../ads/slimcutmedia';
 import {smartadserver} from '../ads/smartadserver';
 import {smartclip} from '../ads/smartclip';
 import {smi2} from '../ads/smi2';
+import {smilewanted} from '../ads/smilewanted';
 import {sogouad} from '../ads/sogouad';
 import {sortable} from '../ads/sortable';
 import {sovrn} from '../ads/sovrn';
@@ -241,6 +250,7 @@ import {taboola} from '../ads/taboola';
 import {tcsemotion} from '../ads/tcsemotion';
 import {teads} from '../ads/teads';
 import {torimochi} from '../ads/torimochi';
+import {tracdelight} from '../ads/tracdelight';
 import {triplelift} from '../ads/triplelift';
 import {trugaze} from '../ads/trugaze';
 import {uas} from '../ads/uas';
@@ -260,6 +270,7 @@ import {wpmedia} from '../ads/wpmedia';
 import {xlift} from '../ads/xlift';
 import {yahoo} from '../ads/yahoo';
 import {yahoojp} from '../ads/yahoojp';
+import {yahoonativeads} from '../ads/yahoonativeads';
 import {yandex} from '../ads/yandex';
 import {yengo} from '../ads/yengo';
 import {yieldbot} from '../ads/yieldbot';
@@ -280,6 +291,7 @@ const AMP_EMBED_ALLOWED = {
   '1wo': true,
   '24smi': true,
   adsloom: true,
+  adstyle: true,
   bringhub: true,
   dable: true,
   engageya: true,
@@ -300,15 +312,17 @@ const AMP_EMBED_ALLOWED = {
   postquare: true,
   pubexchange: true,
   rbinfox: true,
+  readmo: true,
+  runative: true,
   smartclip: true,
   smi2: true,
-  svknative: true,
+  speakol: true,
   strossle: true,
+  svknative: true,
   taboola: true,
+  yahoonativeads: true,
   zen: true,
   zergnet: true,
-  runative: true,
-  speakol: true,
 };
 
 init(window);
@@ -330,6 +344,7 @@ register('adbutler', adbutler);
 register('adform', adform);
 register('adfox', adfox);
 register('adgeneration', adgeneration);
+register('adglare', adglare);
 register('adhese', adhese);
 register('adincube', adincube);
 register('adition', adition);
@@ -348,6 +363,7 @@ register('adsnative', adsnative);
 register('adspeed', adspeed);
 register('adspirit', adspirit);
 register('adstir', adstir);
+register('adstyle', adstyle);
 register('adtech', adtech);
 register('adthrive', adthrive);
 register('adunity', adunity);
@@ -379,6 +395,7 @@ register('caprofitx', caprofitx);
 register('cedato', cedato);
 register('chargeads', chargeads);
 register('colombia', colombia);
+register('conative', conative);
 register('connatix', connatix);
 register('contentad', contentad);
 register('criteo', criteo);
@@ -391,6 +408,7 @@ register('dynad', dynad);
 register('eadv', eadv);
 register('eas', eas);
 register('embedly', embedly);
+register('empower', empower);
 register('engageya', engageya);
 register('epeex', epeex);
 register('eplanning', eplanning);
@@ -475,10 +493,12 @@ register('pubexchange', pubexchange);
 register('pubguru', pubguru);
 register('pubmatic', pubmatic);
 register('pubmine', pubmine);
+register('puffnetwork', puffnetwork);
 register('pulsepoint', pulsepoint);
 register('purch', purch);
 register('quoraad', quoraad);
 register('rbinfox', rbinfox);
+register('readmo', readmo);
 register('realclick', realclick);
 register('reddit', reddit);
 register('recomad', recomad);
@@ -490,13 +510,16 @@ register('rnetplus', rnetplus);
 register('rubicon', rubicon);
 register('runative', runative);
 register('sas', sas);
+register('seedingalliance', seedingalliance);
 register('sekindo', sekindo);
 register('sharethrough', sharethrough);
+register('shemedia', shemedia);
 register('sklik', sklik);
 register('slimcutmedia', slimcutmedia);
 register('smartadserver', smartadserver);
 register('smartclip', smartclip);
 register('smi2', smi2);
+register('smilewanted', smilewanted);
 register('sogouad', sogouad);
 register('sortable', sortable);
 register('sovrn', sovrn);
@@ -509,6 +532,7 @@ register('taboola', taboola);
 register('tcsemotion', tcsemotion);
 register('teads', teads);
 register('torimochi', torimochi);
+register('tracdelight', tracdelight);
 register('triplelift', triplelift);
 register('trugaze', trugaze);
 register('twitter', twitter);
@@ -530,6 +554,7 @@ register('wpmedia', wpmedia);
 register('xlift', xlift);
 register('yahoo', yahoo);
 register('yahoojp', yahoojp);
+register('yahoonativeads', yahoonativeads);
 register('yandex', yandex);
 register('yengo', yengo);
 register('yieldbot', yieldbot);
@@ -566,7 +591,7 @@ function init(win) {
   const config = getAmpConfig();
 
   // Overriding to short-circuit src/mode#getMode()
-  win.AMP_MODE = config.mode;
+  win.__AMP_MODE = config.mode;
 
   setReportError(console.error.bind(console));
 

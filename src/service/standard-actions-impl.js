@@ -52,11 +52,10 @@ export function getAutofocusElementForShowAction(element) {
 const TAG = 'STANDARD-ACTIONS';
 
 /**
- * Regular expression that identifies AMP CSS classes.
- * Includes 'i-amphtml-', '-amp-', and 'amp-' prefixes.
+ * Regular expression that identifies AMP CSS classes with 'i-amphtml-' prefixes.
  * @type {!RegExp}
  */
-const AMP_CSS_RE = /^(i?-)?amp(html)?-/;
+const AMP_CSS_RE = /^i-amphtml-/;
 
 /**
  * This service contains implementations of some of the most typical actions,
@@ -79,10 +78,10 @@ export class StandardActions {
       ? opt_win.document.documentElement
       : ampdoc.getHeadNode();
 
-    /** @const @private {!./resources-impl.ResourcesDef} */
+    /** @const @private {!./resources-interface.ResourcesInterface} */
     this.resources_ = Services.resourcesForDoc(ampdoc);
 
-    /** @const @private {!./viewport/viewport-impl.Viewport} */
+    /** @const @private {!./viewport/viewport-interface.ViewportInterface} */
     this.viewport_ = Services.viewportForDoc(ampdoc);
 
     // Explicitly not setting `Action` as a member to scope installation to one
